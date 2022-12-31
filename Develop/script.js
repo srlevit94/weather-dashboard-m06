@@ -1,62 +1,79 @@
-let cityInput = document.getElementById("city-input");
-let searchBtn = document.getElementById('search-new-city');
-let currentCityName = document.getElementById('current-city');
+const key = "289b1a286cff4b56432e314769ff8d69";
+let searchedCity = response[0];
+let cityName = searchedCity.name;
+let units = "imperial";
 
-document.getElementById("search-city");
-document.addEventListener('click', fetchWeather);;
-
+// adds click listener to seach button
 $('#search-button').on('click', function(event) {
     event.preventDefault();
     let city = $('#search-city').val();
 
     if (city) {
-        fetchWeather(city);
+        getCurrentWeather(event);
         cityInput.value = '';
 
     } else {
-        currentCityName.textContent = '';
+        city.textContent = '';
         alert('Please enter a city')
     }
 
 })
 
 
-function fetchWeather() {
-    
-    let cityName = "Houston"
-    let key = "289b1a286cff4b56432e314769ff8d69";
-    let units = "imperial";
-    const GeoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=${units}&appid=${key}`
+const getCurrentWeather = (event) => {
 
-     fetch(GeoCodeUrl)
-        .then(response => {
-            return response.json();
-        })
-        .then(function (response) {
-            let searchedCity = response[0];
-            let cityName = searchedCity.name;
-            let lat = searchedCity.lat;
-            let lon = searchedCity.lon;
+    const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${units}&appid=${key}`
 
-            const OpenWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
+    fetch(apiURL)
+    .then((response) => {
+        return response.json();
+    })
+        // Current Weather conditions
+    .then((response) => {
 
-            // append name of searched city as button
+        let searchedCity = response[0];
+        let currentIcon = `https://openweathermap.org/img/w/${response.weather[0]}.icon.png`
 
-            fetch(OpenWeatherURL)
-                .then(function (cityName) {
-                    return response.json();
-                })
+        let currentHTML = `
+            <div id="current-weather" class="col">Today's Forecast
+                    <h3><span id="city-name">${searchedCity.name}</span><span id="current-day">${currentMoment.format("(MM/DD/YY)")}</span><img src="${currentIcon}"></h3>
+                    <p><span id="current-temp">${searchedCity.main.temp}</span></p>
+                    <p><span id="current-hum">${searchedCity.main.humidity}</span></p>
+                    <p><span id="current-wind">${searchedCity.wind.speed}</span></p>
+            </div>
+            `;
 
-        // load current weather
-
-
-        // load 5 day forecast
-
-
-
-        })
-       
+            $('#current-weather').html(currentHTML);
+        
+    })
 }
+
+const getFiveDayForecast = (event) => {
+    let forecastAPIURL = `api.openweathermap.org/data/2.5/forecast?${cityName}&units=${units}&appid=${key}`;
+
+    fetch (forecastAPIURL)
+    .then((response) => {
+        return response.json();
+    })
+    .then((response) => {
+        let fiveDayForecastHTML = ``
+    })
+
+}
+
+
+
+        // TODO append name of searched city as button
+
+        
+        
+
+
+        // TODO load 5 day forecast
+
+
+
+       
 
 
 
