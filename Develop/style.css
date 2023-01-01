@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#header {
+    background-color: rgb(115, 30, 164)
+}
+
+#daily-forecast-card {
+    width: 18%
+}

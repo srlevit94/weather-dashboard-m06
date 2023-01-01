@@ -16,19 +16,19 @@
 
   <body>
 
-    <header class="p-2 mb-2">
-      <h1 class="display-3 text-center">Weather Dashboard</h1>
+    <header id="header" class="p-2 mb-2">
+      <h1 class="display-3 text-center font-weight-bold header">Weather Dashboard</h1>
     </header>
 
     <div id= "main-container border-2" class="row w-100 justify-content-center container-fluid">
-        <div class="container">
-            <div class = "row border-2"></div>
+        <div class="row">
+            <div class = "col-3 border-2">
       
             <!-- Search bar and History column on left-->
-            <div id="search-column" class="container col-3">
-                <h2 class="">Search for a City</h2>
+            <div id="search-column" class="border p-2" >
+                <h2 class="text-center">Search for a City</h2>
                 <input type="text" id="city-input" class="input border-2 text-dark w-100" style="width:30vw" placeholder="Enter a city name">
-                <button id="search-button" type="button" class="btn btn-primary w-100">Search</button>
+                <button id="search-button" type="button" class="btn btn-primary w-100 mt-2">Search</button>
                 <div class="searched-city-container">
                     <ul class="btn-group-vertical w-100">
                         <!-- append searched cities below-->
@@ -36,52 +36,19 @@
                     </ul>
                 </div>
             </div>
+            </div>
 
             <!-- Cards on right-->
-            <div id="" class="col-9 px-3">
+            <div id="" class="col-9">
 
                 <!-- Today's forecast-->
-                <div id="current-weather" class="col">
+                <div id="current-weather" class="border">
                 
                 </div>
 
                 <!-- 5-day forecast-->
-                <div id="five-day-forecast" class="col justify-content-between">5-Day Forecast:
-                    <div id="daily-forecast-card" class="row mt-5">
-                        <h3 class="five-day-date">(MM/DD/YYYY)</h3>
-                        <img src="" alt="weather">
-                        <p>Temp: <span id="five-day-temp">## F</span></p>
-                        <p>Wind: <span id="five-day-wind">## MPH</span></p>
-                        <p>Humidity: <span id="five-day-hum">## %</span></p>
-                    </div>
-                    <div id="daily-forecast-card" class="row mt-5">
-                        <h3 class="five-day-date">(MM/DD/YYYY)</h3>
-                        <img src="" alt="weather">
-                        <p>Temp: <span id="five-day-temp">## F</span></p>
-                        <p>Wind: <span id="five-day-wind">## MPH</span></p>
-                        <p>Humidity: <span id="five-day-hum">## %</span></p>
-                    </div>
-                    <div id="daily-forecast-card" class="row mt-5">
-                        <h3 class="five-day-date">(MM/DD/YYYY)</h3>
-                        <img src="" alt="weather">
-                        <p>Temp: <span id="five-day-temp">## F</span></p>
-                        <p>Wind: <span id="five-day-wind">## MPH</span></p>
-                        <p>Humidity: <span id="five-day-hum">## %</span></p>
-                    </div>
-                    <div id="daily-forecast-card" class="row mt-5">
-                        <h3 class="five-day-date">(MM/DD/YYYY)</h3>
-                        <img src="" alt="weather">
-                        <p>Temp: <span id="five-day-temp">## F</span></p>
-                        <p>Wind: <span id="five-day-wind">## MPH</span></p>
-                        <p>Humidity: <span id="five-day-hum">## %</span></p>
-                    </div>
-                    <div id="daily-forecast-card" class="row mt-5">
-                        <h3 class="five-day-date">(MM/DD/YYYY)</h3>
-                        <img src="" alt="weather">
-                        <p>Temp: <span id="five-day-temp">## F</span></p>
-                        <p>Wind: <span id="five-day-wind">## MPH</span></p>
-                        <p>Humidity: <span id="five-day-hum">## %</span></p>
-                    </div>
+                <div id="five-day-forecast" class="border">
+                    
                 </div>
             </div>
         
