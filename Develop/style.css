@@ -3,5 +3,6 @@
 }
 
 #daily-forecast-card {
-    width: 18%
+    width: 18%;
+    background-color: rgb(115, 30, 164)
 }

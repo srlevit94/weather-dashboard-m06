@@ -16,8 +16,8 @@
 
   <body>
 
-    <header id="header" class="p-2 mb-2">
-      <h1 class="display-3 text-center font-weight-bold header">Weather Dashboard</h1>
+    <header id="header" class="p-2 mb-2 bg-purple">
+      <h1 class="display-3 text-center text-white font-weight-bold header">Weather Dashboard</h1>
     </header>
 
     <div id= "main-container border-2" class="row w-100 justify-content-center container-fluid">
@@ -29,8 +29,8 @@
                 <h2 class="text-center">Search for a City</h2>
                 <input type="text" id="city-input" class="input border-2 text-dark w-100" style="width:30vw" placeholder="Enter a city name">
                 <button id="search-button" type="button" class="btn btn-primary w-100 mt-2">Search</button>
-                <div class="searched-city-container">
-                    <ul class="btn-group-vertical w-100">
+                <div class="searched-city-container align-items-center">
+                    <ul id="city-button-list" class="w-90 p-1">
                         <!-- append searched cities below-->
                         
                     </ul>
