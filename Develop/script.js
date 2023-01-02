@@ -13,7 +13,6 @@ const throwErrors = (response) => {
 // function to fetch current weather
 const getCurrentWeather = () => {
     let searchedCity = $('#city-input').val();
-    currentCity= $('#city-input').val();
     const units = "imperial";
     const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=${units}&appid=${key}`
 
@@ -62,7 +61,6 @@ const getFiveDayForecast = () => {
         // loop to get values for each day
         for (let i = 0; i < 5; i++) {
             let fiveDays = dayjs().add([i], 'day').format('ddd, MMM D')
-            console.log(fiveDays);
             let fiveDayCall = response.list[i];
             let fiveDayIcon = `http://openweathermap.org/img/wn/${fiveDayCall.weather[0].icon}@2x.png`
 
@@ -82,8 +80,7 @@ const getFiveDayForecast = () => {
     })
 
 }
-// TODO save and append name of searched city as button
-
+// saves city name into local storage and appends to list
 const saveSearchedCity = (searchedCity) => {
     const searchedCitiesLs = JSON.parse(localStorage.getItem('cities')) || [];
     if(searchedCitiesLs.findIndex(el => el == searchedCity) != -1) return;
@@ -91,59 +88,35 @@ const saveSearchedCity = (searchedCity) => {
     localStorage.setItem('cities', JSON.stringify(searchedCitiesLs));
     renderSearchedCities();
 }
-
+// lists searched cities as  buttons
 const renderSearchedCities = () => {
     const searchedCitiesLs = JSON.parse(localStorage.getItem('cities')) || [];
     searchedCitiesList.innerHTML = '';
-    searchedCitiesLs.forEach(function(item){
+    for (let i = 0; i < searchedCitiesLs.length; i++) {
         const li = document.createElement('li');
         li.className = 'btn btn-secondary w-100 mt-2';
-        li.innerText = item;
+        li.setAttribute('id', `city-button${i}`);
+        li.setAttribute('type', 'button');
+        li.textContent = searchedCitiesLs[i];
+        console.log(li.textContent)
         searchedCitiesList.prepend(li);
-        li.addEventListener('click', (event) => {
-            $('#search-city').val(event.target.textContent);
-            currentCity=$('#search-city').val();
-            getCurrentConditions(event);
-        });
-      });
-
+    }
 }
 
 // adds click listener to search button
 $('#search-button').on('click', (event) => {
-    currentCity=$('#city-input').val();
+    // event.preventDefault();
+    currentCity = $('#city-input').val();
+    getCurrentWeather(event);
+});
+
+// adds click listener to searched city buttons
+$('#city-button-list').on("click", (event) => {
+    // event.preventDefault();
+    $(`#city-input`).val(event.target.textContent);
+    currentCity = $('#city-input').val();
+    console.log(currentCity);
     getCurrentWeather(event);
 });
 
 renderSearchedCities();
-
-// adds click listener to previous searched city buttons
-// $('#city-button-list').on('click', (event) => {
-//     //event.preventDefault();
-//     $('#city-input').val(event.target.textContent);
-//     currentCity=$('#city-input').val();
-//     getCurrentWeather(event);
-// });
-
-// const saveSearchedCity = (cityInput) => {
-//     let cityExists = false;
-//     for (let i = 0; i < 10; i++) {
-//         if (localStorage["cities" + i] === cityInput) {
-//             cityExists = true;
-//             break;
-//         }
-//         if (cityExists === false) {
-//             localStorage.setItem('cities' + localStorage.length, cityInput);
-//         }
-//     }
-// }
-
-
-
-       
-
-
-
-
-
-
